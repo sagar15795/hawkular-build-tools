@@ -16,9 +16,6 @@
  */
 package org.hawkular.client.android.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hawkular.client.android.R;
 import org.hawkular.client.android.adapter.PersonasAdapter;
 import org.hawkular.client.android.adapter.ViewPagerAdapter;
@@ -56,6 +53,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import icepick.Icepick;
@@ -338,18 +339,15 @@ public final class DrawerActivity extends AppCompatActivity implements Navigatio
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-        for (int i = 0; i < navigation.getMenu().size(); i++) {
-            MenuItem item = navigation.getMenu().getItem(i);
-            item.setChecked(false);
-        }
-
         switch (menuItem.getItemId()) {
             case R.id.menu_favourites:
                 showFavourites();
+                menuItem.setChecked(true);
                 break;
 
             case R.id.menu_alerts:
                 showAlerts();
+                menuItem.setChecked(true);
                 break;
 
             case R.id.menu_settings:
@@ -369,8 +367,6 @@ public final class DrawerActivity extends AppCompatActivity implements Navigatio
         }
 
         currentNavigationId = menuItem.getItemId();
-
-        menuItem.setChecked(true);
 
         closeDrawers();
 
